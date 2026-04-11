@@ -200,24 +200,36 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 bg-slate-950">
-      <div className="w-full max-w-3xl glass-panel rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 bg-black">
+      <div className="w-full max-w-3xl glass-panel rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-10 md:p-14 shadow-2xl relative overflow-hidden">
         {/* Background Glows */}
-        <div className="absolute -top-24 -left-24 w-64 h-64 bg-adslab-blue/10 rounded-full blur-[100px]" />
-        <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-adslab-purple/10 rounded-full blur-[100px]" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-adslab-blue/20 rounded-full blur-[120px]" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-adslab-purple/20 rounded-full blur-[120px]" />
 
         {/* Header / Progress Bar */}
-        <div className="relative z-10 mb-10">
-          <div className="flex justify-between items-center mb-6">
-            <button 
-              onClick={resetApp}
-              className="p-2 hover:bg-slate-800 rounded-lg transition-colors text-slate-400 hover:text-white"
-              title="Volver al inicio"
-            >
-              <Home className="w-5 h-5" />
-            </button>
-            <h1 className="text-xl font-bold tracking-tight text-white">Generador de Persona y Nicho</h1>
-            <div className="w-9" /> {/* Spacer */}
+        <div className="relative z-10 mb-12">
+          <div className="flex flex-col items-center gap-6 mb-10">
+            <div className="adslab-badge">
+              <LayoutGrid className="w-3 h-3 text-adslab-blue" />
+              Growth Scanner V1.0
+            </div>
+            
+            <div className="flex justify-between items-center w-full">
+              <button 
+                onClick={resetApp}
+                className="p-2 hover:bg-white/5 rounded-lg transition-colors text-slate-500 hover:text-white"
+                title="Volver al inicio"
+              >
+                <Home className="w-5 h-5" />
+              </button>
+              <img 
+                src="https://i.ibb.co/GfM5vnx7/LOGO-ADS.png" 
+                alt="AdsLab Logo" 
+                className="h-8 sm:h-10 w-auto"
+                referrerPolicy="no-referrer"
+              />
+              <div className="w-9" />
+            </div>
           </div>
           
           <div className="flex gap-2 mb-8">
@@ -248,8 +260,10 @@ export default function App() {
                 className="space-y-8"
               >
                 <div>
-                  <h2 className="text-2xl font-bold mb-2">¿Cuál es tu área de actuación?</h2>
-                  <p className="text-slate-500 text-sm">No necesitas ser específico todavía. Elige el área general.</p>
+                  <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+                    ¿Cuál es tu <span className="text-gradient">área de actuación?</span>
+                  </h2>
+                  <p className="text-slate-400 text-sm sm:text-base">No necesitas ser específico todavía. Elige el área general.</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -297,7 +311,9 @@ export default function App() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl font-bold mb-2">Calibración de Nicho</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+                  Calibración de <span className="text-gradient">Nicho</span>
+                </h2>
                 <p className="text-slate-400 mb-8 italic text-lg leading-relaxed">
                   "Personalicemos el motor para tu industria y mercado."
                 </p>
@@ -313,7 +329,7 @@ export default function App() {
                         value={formData.businessName}
                         onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                         placeholder="Ej: Dra. Luz / AdsLab Agency"
-                        className="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-white focus:border-adslab-blue focus:ring-1 focus:ring-adslab-blue outline-none transition-all"
+                        className="adslab-input"
                       />
                     </div>
                     <div>
@@ -325,7 +341,7 @@ export default function App() {
                         value={formData.country}
                         onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                         placeholder="Ej: España, México, Colombia..."
-                        className="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-white focus:border-adslab-blue focus:ring-1 focus:ring-adslab-blue outline-none transition-all"
+                        className="adslab-input"
                       />
                     </div>
                   </div>
@@ -338,7 +354,7 @@ export default function App() {
                       value={formData.nicheSpecificAnswer}
                       onChange={(e) => setFormData({ ...formData, nicheSpecificAnswer: e.target.value })}
                       placeholder="Escribe tu respuesta aquí..."
-                      className="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-white focus:border-adslab-blue focus:ring-1 focus:ring-adslab-blue outline-none transition-all min-h-[120px]"
+                      className="adslab-input min-h-[120px]"
                     />
                   </div>
                 </div>
@@ -377,7 +393,9 @@ export default function App() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl font-bold mb-2">El Punto Ciego</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+                  El <span className="text-gradient">Punto Ciego</span>
+                </h2>
                 <p className="text-slate-400 mb-8 italic text-lg leading-relaxed">
                   "Lo que no ves es lo que frena tu escalamiento."
                 </p>
@@ -406,7 +424,9 @@ export default function App() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl font-bold mb-2">Objetivo: Previsibilidad</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+                  Objetivo: <span className="text-gradient">Previsibilidad</span>
+                </h2>
                 <p className="text-slate-400 mb-8 italic">Convertir la incertidumbre en un sistema de ROAS constante.</p>
                 <div className="grid grid-cols-1 gap-4">
                   <div className="p-5 rounded-xl bg-slate-900 adslab-border flex items-center gap-4">
@@ -433,16 +453,18 @@ export default function App() {
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
               >
-                <h2 className="text-3xl font-bold mb-2">Ecosistema de Tráfico</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight">
+                  Ecosistema de <span className="text-gradient">Tráfico</span>
+                </h2>
                 <p className="text-slate-400 mb-8">Canales seleccionados para la recolección de datos y despliegue de activos:</p>
                 <div className="flex flex-wrap gap-3">
-                  <div className="px-6 py-3 rounded-2xl bg-adslab-blue/20 border border-adslab-blue/30 text-adslab-blue font-bold flex items-center gap-2">
+                  <div className="px-6 py-3 rounded-2xl bg-adslab-blue/10 border border-adslab-blue/20 text-adslab-blue font-bold flex items-center gap-2">
                     <Globe className="w-4 h-4" /> Instagram
                   </div>
-                  <div className="px-6 py-3 rounded-2xl bg-adslab-deep/20 border border-adslab-deep/30 text-adslab-deep font-bold flex items-center gap-2">
+                  <div className="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2">
                     <Globe className="w-4 h-4" /> Facebook
                   </div>
-                  <div className="px-6 py-3 rounded-2xl bg-adslab-purple/20 border border-adslab-purple/30 text-adslab-purple font-bold flex items-center gap-2">
+                  <div className="px-6 py-3 rounded-2xl bg-adslab-purple/10 border border-adslab-purple/20 text-adslab-purple font-bold flex items-center gap-2">
                     <Globe className="w-4 h-4" /> TikTok
                   </div>
                 </div>
@@ -456,6 +478,15 @@ export default function App() {
                 animate={{ opacity: 1 }}
                 className="text-center py-12 flex flex-col items-center justify-center"
               >
+                <img 
+                  src="https://i.ibb.co/GfM5vnx7/LOGO-ADS.png" 
+                  alt="AdsLab Logo" 
+                  className="h-12 sm:h-16 w-auto mb-8 animate-pulse"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://picsum.photos/seed/adslab/200/50";
+                  }}
+                />
                 <div className="loader mb-8" />
                 <h2 className="text-2xl font-bold mb-3">AdsLab Engine está procesando...</h2>
                 <p className="text-slate-500 animate-pulse max-w-xs mx-auto">
@@ -476,7 +507,16 @@ export default function App() {
                     ref={reportRef}
                     className="bg-slate-950 rounded-[calc(1.5rem-1px)] sm:rounded-[calc(2rem-1px)] p-5 sm:p-6 md:p-10 pr-6 sm:pr-8 md:pr-12 max-h-[400px] sm:max-h-[500px] overflow-y-auto custom-scrollbar"
                   >
-                    <div className="flex justify-center mb-6">
+                    <div className="flex flex-col items-center justify-center mb-8 gap-4">
+                      <img 
+                        src="https://i.ibb.co/GfM5vnx7/LOGO-ADS.png" 
+                        alt="AdsLab Logo" 
+                        className="h-10 sm:h-12 w-auto"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = "https://picsum.photos/seed/adslab/200/50";
+                        }}
+                      />
                       <div className="px-4 py-1 bg-adslab-blue/10 border border-adslab-blue/20 rounded-full">
                         <h3 className="text-adslab-blue font-bold uppercase text-[10px] tracking-[0.3em]">
                           Informe de Estrategia AdsLab
@@ -502,7 +542,7 @@ export default function App() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   <button 
                     onClick={handleCopy}
-                    className="w-full bg-slate-900/50 border border-slate-800 text-white py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black uppercase text-xs sm:text-sm tracking-widest hover:bg-slate-800 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2"
+                    className="w-full bg-white/5 border border-white/10 text-white py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black uppercase text-xs sm:text-sm tracking-widest hover:bg-white/10 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2"
                   >
                     {copied ? <Check className="w-4 h-4 sm:w-5 h-5 text-green-500" /> : <Copy className="w-4 h-4 sm:w-5 h-5" />}
                     {copied ? 'Copiado' : 'Copiar Resumen'}

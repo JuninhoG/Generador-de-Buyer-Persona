@@ -1,4 +1,4 @@
-# AdsLab AI Engine
+# AdsLab Buyer Persona
 
 Advanced AI-powered marketing strategy engine for niche analysis and buyer persona generation.
 

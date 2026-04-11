@@ -4,32 +4,36 @@
 @theme {
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   
-  --color-adslab-blue: #0066f9;
-  --color-adslab-deep: #0032ff;
-  --color-adslab-purple: #8400ff;
+  --color-adslab-blue: #0066ff;
+  --color-adslab-purple: #a020f0;
+  --color-adslab-dark: #000000;
 }
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-50 antialiased;
+    @apply bg-black text-slate-50 antialiased;
   }
 }
 
 @layer components {
   .glass-panel {
-    @apply bg-slate-900/70 backdrop-blur-xl border border-white/5 shadow-2xl;
+    @apply bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)];
   }
   
   .bg-gradient-adslab {
-    @apply bg-gradient-to-br from-adslab-blue to-adslab-purple;
+    @apply bg-gradient-to-r from-adslab-blue to-adslab-purple;
   }
   
   .text-gradient {
     @apply bg-gradient-to-r from-adslab-blue to-adslab-purple bg-clip-text text-transparent;
   }
   
-  .adslab-border {
-    @apply border border-adslab-blue/30;
+  .adslab-badge {
+    @apply px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 flex items-center gap-2;
+  }
+
+  .adslab-input {
+    @apply w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-adslab-blue/50 transition-all;
   }
 }
 
