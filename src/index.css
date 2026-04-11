@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-adslab-blue: #0066f9;
+  --color-adslab-deep: #0032ff;
+  --color-adslab-purple: #8400ff;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-50 antialiased;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-slate-900/70 backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+  
+  .bg-gradient-adslab {
+    @apply bg-gradient-to-br from-adslab-blue to-adslab-purple;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-adslab-blue to-adslab-purple bg-clip-text text-transparent;
+  }
+  
+  .adslab-border {
+    @apply border border-adslab-blue/30;
+  }
+}
+
+/* Custom Loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: #0066f9;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+  margin: 15px 0; /* Increased margin to avoid rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-adslab-blue;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .glass-panel {
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  .custom-scrollbar {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .prose {
+    color: black !important;
+    max-width: 100% !important;
+  }
+
+  h4 {
+    color: #0066f9 !important;
+    page-break-after: avoid;
+  }
+
+  p, li {
+    page-break-inside: avoid;
+  }
+}
