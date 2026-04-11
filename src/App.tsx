@@ -509,7 +509,9 @@ export default function App() {
                   </button>
                   
                   <a 
-                    href="https://wa.me/595987145624"
+                    href={`https://wa.me/595987145624?text=${encodeURIComponent(
+                      `¡Hola! Soy ${formData.businessName} de ${formData.country}. Acabo de generar mi estrategia para el nicho de ${formData.niche} en AdsLab y me gustaría aplicarla.`
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full bg-gradient-adslab text-white py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black uppercase text-xs sm:text-sm tracking-widest hover:opacity-90 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg shadow-adslab-blue/20"
