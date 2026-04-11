@@ -1,20 +1,20 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AdsLab AI Engine
 
-# Run and deploy your AI Studio app
+Advanced AI-powered marketing strategy engine for niche analysis and buyer persona generation.
 
-This contains everything you need to run your app locally.
+## Deployment on Vercel
 
-View your app in AI Studio: https://ai.studio/apps/034e5de7-8336-4fcc-8cfc-62a618a159a6
+1. **Push to GitHub**: Push this repository to your GitHub account.
+2. **Import to Vercel**: Create a new project in Vercel and import your repository.
+3. **Environment Variables**: Add the following environment variable in the Vercel project settings:
+   - `VITE_GEMINI_API_KEY`: Your Google Gemini API Key.
+4. **Build Settings**:
+   - Framework Preset: `Vite`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
 
-## Run Locally
+## Local Development
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Install dependencies: `npm install`
+2. Create a `.env` file and add `VITE_GEMINI_API_KEY=your_key_here`
+3. Start dev server: `npm run dev`
