@@ -31,6 +31,7 @@ interface FormData {
   country: string;
   businessName: string;
   nicheSpecificAnswer: string;
+  customNiche: string;
   problem: string;
   goal: string;
   channels: string;
@@ -51,6 +52,7 @@ export default function App() {
     country: '',
     businessName: '',
     nicheSpecificAnswer: '',
+    customNiche: '',
     problem: 'El cliente no sabe donde ni a quien esta vendiendo su producto o servicio',
     goal: 'Previsibilidad y Escalamiento de ROAS',
     channels: 'Instagram, Facebook, TikTok',
@@ -88,7 +90,8 @@ export default function App() {
 
   const generateStep3Insight = async () => {
     setIsAnalyzingStep2(true);
-    const prompt = `Como experto en marketing de AdsLab, analiza brevemente esta respuesta de un cliente (${formData.businessName}) en el nicho de ${formData.niche} para el mercado de ${formData.country}: "${formData.nicheSpecificAnswer}".
+    const displayNiche = formData.niche === 'Otro' ? formData.customNiche : formData.niche;
+    const prompt = `Como experto en marketing de AdsLab, analiza brevemente esta respuesta de un cliente (${formData.businessName}) en el nicho de ${displayNiche} para el mercado de ${formData.country}: "${formData.nicheSpecificAnswer}".
     Identifica un "Punto Ciego" o una oportunidad de mercado específica relacionada con su respuesta y el país mencionado. 
     Dirígete directamente a ${formData.businessName} en tu respuesta.
     Sé breve (máximo 2 párrafos), directo y usa un tono profesional pero provocativo. 
@@ -112,13 +115,14 @@ export default function App() {
 
   const callGemini = async () => {
     setIsGenerating(true);
+    const displayNiche = formData.niche === 'Otro' ? formData.customNiche : formData.niche;
     const systemPrompt = `Actúa como Senior Growth Marketer de AdsLab. Genera un Buyer Persona detallado y una Estrategia de Ads completa y EXCLUSIVA para ${formData.businessName} en el mercado de ${formData.country}.
     
     IMPORTANTE: Personaliza TODO el informe mencionando a ${formData.businessName} frecuentemente. No debe parecer genérico.
     
     Contexto:
     - Nombre/Empresa: ${formData.businessName}
-    - Nicho: ${formData.niche}
+    - Nicho: ${displayNiche}
     - Experiencia: ${formData.experience}
     - País objetivo: ${formData.country}
     - Detalle específico: ${formData.nicheSpecificAnswer}
@@ -281,6 +285,30 @@ export default function App() {
                     </button>
                   ))}
                 </div>
+
+                <AnimatePresence>
+                  {formData.niche === 'Otro' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pt-2">
+                        <label className="block text-sm font-medium text-slate-300 mb-2">
+                          Especifica tu área de actuación:
+                        </label>
+                        <input 
+                          type="text"
+                          value={formData.customNiche}
+                          onChange={(e) => setFormData({ ...formData, customNiche: e.target.value })}
+                          placeholder="Ej: Consultoría de Software, Venta de Artesanías..."
+                          className="adslab-input"
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 <div className="pt-4">
                   <h2 className="text-lg font-bold mb-4">¿Hace cuánto tiempo trabajas con esto?</h2>
@@ -550,7 +578,7 @@ export default function App() {
                   
                   <a 
                     href={`https://wa.me/595987145624?text=${encodeURIComponent(
-                      `¡Hola! Soy ${formData.businessName} de ${formData.country}. Acabo de generar mi estrategia para el nicho de ${formData.niche} en AdsLab y me gustaría aplicarla.`
+                      `¡Hola! Soy ${formData.businessName} de ${formData.country}. Acabo de generar mi estrategia para el nicho de ${formData.niche === 'Otro' ? formData.customNiche : formData.niche} en AdsLab y me gustaría aplicarla.`
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -581,11 +609,11 @@ export default function App() {
             <button 
               onClick={nextStep}
               disabled={
-                (step === 1 && (!formData.niche || !formData.experience)) ||
+                (step === 1 && (!formData.niche || !formData.experience || (formData.niche === 'Otro' && !formData.customNiche))) ||
                 (step === 2 && (!formData.nicheSpecificAnswer || !formData.country || !formData.businessName))
               }
               className={`group bg-gradient-adslab px-6 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black text-white text-sm sm:text-base shadow-xl transition-all active:scale-95 flex items-center gap-2 ${
-                ((step === 1 && (!formData.niche || !formData.experience)) || (step === 2 && (!formData.nicheSpecificAnswer || !formData.country || !formData.businessName)))
+                ((step === 1 && (!formData.niche || !formData.experience || (formData.niche === 'Otro' && !formData.customNiche))) || (step === 2 && (!formData.nicheSpecificAnswer || !formData.country || !formData.businessName)))
                 ? 'opacity-50 cursor-not-allowed grayscale' 
                 : 'hover:shadow-adslab-blue/20 hover:scale-105'
               }`}
